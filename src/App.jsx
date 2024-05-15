@@ -12,8 +12,6 @@ const App = () => {
     },
   ]);
 
-  // const [workingList, setWorkingList] =useState([])
-
   // 함수: 새로운 인풋 리스트 만들기
   function addInputList(titleValue, contentValue) {
     const newTodoList = {
