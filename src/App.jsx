@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import Header from "./components/Header";
 import TodoInput from "./components/TodoInput";
-import WorkingZone from "./components/WorkingZone";
-import DoneZone from "./components/DoneZone";
 
 const App = () => {
   const [todoList, setTodoList] = useState([
@@ -10,6 +7,7 @@ const App = () => {
       id: Date.now(),
       todoTitle: "할일 제목",
       todoContent: "이런저런 상세한 일들",
+      isDone: false,
     },
   ]);
 
@@ -24,14 +22,59 @@ const App = () => {
     setTodoList([...todoList, newTodoList]);
   }
 
+  //함수 : addWorking
+  function addWorking() {
+    return (
+      <>
+        {todoList
+          .filter((list) => !list.isDone)
+          .map((list) => {
+            return (
+              <div key={list.id}>
+                <h3 className="todo-title">{list.todoTitle}</h3>
+                <p className="todo-content">{list.todoContent}</p>
+                <div className="buttons">
+                  <button className="delete-btn" onClick={함수1}>
+                    삭제
+                  </button>
+                  <button className="complete-btn" onClick={함수2}>
+                    완료
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        ;
+      </>
+    );
+  }
+
+  function 함수1() {
+    /*
+     *
+     */
+  }
+
   return (
     <>
-      <Header />
+      <header>
+        <h1 className="main-title">My Todo List</h1>
+        <h2 className="process-name">React</h2>
+      </header>
       <TodoInput addInputList={addInputList} />
-      <h3 className="working-zone-title">Working...🔥</h3>
-      <WorkingZone todoList={todoList} />
-      <h3 className="done-zone-title">Done..!🎉</h3>
-      <DoneZone />
+      <div className="working">
+        <h3 className="working-title">Working...🔥</h3>
+        <div>{addWorking()}</div>
+      </div>
+      <div className="done">
+        <h3 className="done-title">Done..!🎉</h3>
+        <h3 className="todo-title">할일 제목</h3>
+        <p className="todo-content">할일 내용</p>
+        <div className="btn-box">
+          <button className="delete-btn">삭제</button>
+          <button className="cancel-btn">취소</button>
+        </div>
+      </div>
     </>
   );
 };
