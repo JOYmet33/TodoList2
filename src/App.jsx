@@ -18,6 +18,7 @@ const App = () => {
       id: Date.now(),
       todoTitle: titleValue,
       todoContent: contentValue,
+      isDone: false,
     };
     setTodoList([...todoList, newTodoList]);
   }
