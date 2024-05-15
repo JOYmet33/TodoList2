@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 
-const TodoInput = ({ addFunction }) => {
+const TodoInput = ({ addInputList }) => {
   const [titleValue, setTitle] = useState("");
   const [contentValue, setContent] = useState("");
 
   function saveTitle() {
     setTitle(event.target.value);
-    // console.log(event.target.value);
   }
-
   function saveContent() {
     setContent(event.target.value);
-    // console.log(event.target.value);
   }
 
   return (
@@ -22,7 +19,7 @@ const TodoInput = ({ addFunction }) => {
           <input
             className="input-title"
             placeholder="할일의 제목을 적어주세요."
-            type="test"
+            type="text"
             value={titleValue}
             onChange={saveTitle}
           />
@@ -30,14 +27,14 @@ const TodoInput = ({ addFunction }) => {
           <input
             className="input-content"
             placeholder="상세하게 적어주세요."
-            type="test"
+            type="text"
             value={contentValue}
             onChange={saveContent}
           />
         </div>
         <button
           className="input-btn"
-          onClick={() => addFunction(titleValue, contentValue)}
+          onClick={() => addInputList(titleValue, contentValue)}
         >
           추가하기
         </button>

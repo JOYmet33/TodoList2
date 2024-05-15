@@ -3,29 +3,32 @@ import Header from "./components/Header";
 import TodoInput from "./components/TodoInput";
 import WorkingZone from "./components/WorkingZone";
 import DoneZone from "./components/DoneZone";
-
 const App = () => {
-  const [title, setTitle] = useState(0);
-
-  const [todoList, setTodoList] = useState([]);
-
-  const add = (title, contents) => {
-    const todo = {
+  const [todoList, setTodoList] = useState([
+    {
       id: Date.now(),
-      title,
-      contents,
-      // sdfsdf
-    };
+      todoTitle: "할일 제목",
+      todoContent: "이런저런 상세한 일들",
+    },
+  ]);
 
-    setTodoList([...todoList, todo]);
-  };
+  // const [workingList, setWorkingList] =useState([])
+
+  // 함수: 새로운 인풋 리스트 만들기
+  function addInputList(titleValue, contentValue) {
+    const newTodoList = {
+      id: Date.now(),
+      todoTitle: titleValue,
+      todoContent: contentValue,
+    };
+    setTodoList([...todoList, newTodoList]);
+  }
 
   return (
     <>
-      <button onClick={add}>{title}</button>
       <Header />
-      <TodoInput addFunction={add} />
-      <WorkingZone />
+      <TodoInput addInputList={addInputList} />
+      <WorkingZone todoList={todoList} />
       <DoneZone />
     </>
   );
