@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import TodoInput from "./components/TodoInput";
 import WorkingZone from "./components/WorkingZone";
 import DoneZone from "./components/DoneZone";
+
 const App = () => {
   const [todoList, setTodoList] = useState([
     {
