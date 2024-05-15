@@ -28,7 +28,9 @@ const App = () => {
     <>
       <Header />
       <TodoInput addInputList={addInputList} />
+      <h3 className="working-zone-title">Working...🔥</h3>
       <WorkingZone todoList={todoList} />
+      <h3 className="done-zone-title">Done..!🎉</h3>
       <DoneZone />
     </>
   );
