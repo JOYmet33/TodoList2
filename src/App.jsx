@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TodoInput from "./components/TodoInput";
 import "./App.css";
 
@@ -29,18 +29,22 @@ const App = () => {
       <>
         {todoList
           .filter((list) => !list.isDone)
-          .map((list) => {
+          .map((list, index) => {
+            console.log(index);
             return (
               <div key={list.id}>
                 <h2 className="todo-title">{list.todoTitle}</h2>
                 <p className="todo-content">{list.todoContent}</p>
                 <div className="buttons">
-                  <button className="delete-btn" onClick={함수1}>
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteTodo(index)}
+                  >
                     삭제
                   </button>
-                  <button className="complete-btn" onClick={함수2}>
+                  {/* <button className="complete-btn" onClick={함수2}>
                     완료
-                  </button>
+                  </button> */}
                 </div>
               </div>
             );
@@ -51,11 +55,14 @@ const App = () => {
   }
 
   // 함수: out from todoList
-  function 함수1() {
-    /*
-     *
-     */
-  }
+  const deleteTodo = (index) => {
+    // 1. 해당 index를 찾아야 한다.
+    // 2. 전체 배열 기준으로 index 값의 인자를 빼줘야한다.
+    let temp = [...todoList];
+    temp.splice(index, 1);
+    // 3. 해당 값을 빼준 배열을 다시 상태 값에 저장한다.
+    setTodoList(temp);
+  };
 
   return (
     <div className="root">
@@ -67,7 +74,30 @@ const App = () => {
       <div className="working">
         <h1 className="working-title">🔥Working</h1>
         <div className="working-list">
-          <div>{addWorking}</div>
+          <div>
+            {todoList
+              .filter((list) => !list.isDone)
+              .map((list, index) => {
+                console.log(index);
+                return (
+                  <div key={list.id}>
+                    <h2 className="todo-title">{list.todoTitle}</h2>
+                    <p className="todo-content">{list.todoContent}</p>
+                    <div className="buttons">
+                      <button
+                        className="delete-btn"
+                        onClick={() => deleteTodo(index)}
+                      >
+                        삭제
+                      </button>
+                      {/* <button className="complete-btn" onClick={함수2}>
+                    완료
+                  </button> */}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
       <div className="done">
