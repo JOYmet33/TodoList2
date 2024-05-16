@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TodoInput from "./components/TodoInput";
+import "./App.css";
 
 const App = () => {
   const [todoList, setTodoList] = useState([
@@ -31,7 +32,7 @@ const App = () => {
           .map((list) => {
             return (
               <div key={list.id}>
-                <h3 className="todo-title">{list.todoTitle}</h3>
+                <h2 className="todo-title">{list.todoTitle}</h2>
                 <p className="todo-content">{list.todoContent}</p>
                 <div className="buttons">
                   <button className="delete-btn" onClick={함수1}>
@@ -49,6 +50,7 @@ const App = () => {
     );
   }
 
+  // 함수: out from todoList
   function 함수1() {
     /*
      *
@@ -56,26 +58,30 @@ const App = () => {
   }
 
   return (
-    <>
+    <div className="root">
       <header>
         <h1 className="main-title">My Todo List</h1>
         <h2 className="process-name">React</h2>
       </header>
       <TodoInput addInputList={addInputList} />
       <div className="working">
-        <h3 className="working-title">Working...🔥</h3>
-        <div>{addWorking()}</div>
-      </div>
-      <div className="done">
-        <h3 className="done-title">Done..!🎉</h3>
-        <h3 className="todo-title">할일 제목</h3>
-        <p className="todo-content">할일 내용</p>
-        <div className="btn-box">
-          <button className="delete-btn">삭제</button>
-          <button className="cancel-btn">취소</button>
+        <h1 className="working-title">🔥Working</h1>
+        <div className="working-list">
+          <div>{addWorking}</div>
         </div>
       </div>
-    </>
+      <div className="done">
+        <h1 className="done-title">🎉Done</h1>
+        <div className="done-list">
+          <h2 className="todo-title">할일 제목</h2>
+          <p className="todo-content">할일 내용</p>
+          <div className="btn-box">
+            <button className="delete-btn">삭제</button>
+            <button className="cancel-btn">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
